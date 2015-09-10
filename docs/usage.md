@@ -46,3 +46,36 @@ You can also easily make your class based views auto-logged by using the
 `action_kind` property on the view. But you can also override a number of
 properties to customize what is logged.
 
+
+## Handler
+
+You can also define a handler for database logging, simply add following
+in django settings.py file. All log message will be logged in your database
+table.
+
+```
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'db': {
+            'level': 'WARNING',
+            'class': 'pinax.eventlog.handlers.DBHandler',
+            'formatter': 'simple',
+        },
+    },
+    'loggers': {
+        'yourapp':          {'handlers': ['file', 'db'], 'level': 'WARNING', 'propagate': True},
+    },
+}
+```
