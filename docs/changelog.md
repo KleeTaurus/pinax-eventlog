@@ -1,5 +1,9 @@
 # ChangeLog
 
+## 1.0.1
+
+- added database handler for logging
+
 ## 1.0.0
 
 - Eldarion donated to Pinax, renaming from `eventlog` to `pinax-eventlog`
